@@ -1267,7 +1267,7 @@ st.markdown(report_md)
 # Download options
 st.subheader(f"⬇️ {t('download')} Options")
 col_d1, col_d2, col_d3, col_d4 = st.columns(4)    
-    with col_d1:
+with col_d1:
         st.download_button(
             "📄 Full Report (MD)",
             data=report_md.encode('utf-8'),
@@ -1275,7 +1275,7 @@ col_d1, col_d2, col_d3, col_d4 = st.columns(4)
             mime="text/markdown",
             use_container_width=True
         )
-    with col_d2:
+with col_d2:
         # Export pipeline results as JSON
         json_export = json.dumps({
             "config": {
@@ -1296,7 +1296,7 @@ col_d1, col_d2, col_d3, col_d4 = st.columns(4)
             use_container_width=True
         )
     
-    with col_d3:
+with col_d3:
         # Export as CSV
         if st.session_state.pipeline_results:
             df_results = pd.DataFrame(st.session_state.pipeline_results)
@@ -1310,7 +1310,7 @@ col_d1, col_d2, col_d3, col_d4 = st.columns(4)
                 use_container_width=True
             )
     
-    with col_d4:
+with col_d4:
         # Export configuration
         config_yaml = yaml.dump({
             "agents": st.session_state.agents_cfg.get("agents", []),
