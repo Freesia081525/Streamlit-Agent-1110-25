@@ -20,3 +20,4 @@ wordcloud
 matplotlib
 numpy
 pdf2image
+pypdf
