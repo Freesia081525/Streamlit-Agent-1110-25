@@ -1326,8 +1326,8 @@ with col_d4:
         )
     
     # Results table
-    st.subheader("📊 Detailed Results Table")
-    if st.session_state.pipeline_results:
+st.subheader("📊 Detailed Results Table")
+if st.session_state.pipeline_results:
         df_display = pd.DataFrame([
             {
                 "Step": r["step"],
