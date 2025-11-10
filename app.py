@@ -1370,7 +1370,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 ```
-152.1s
+#152.1s
 Model
 ThinkingThoughts
 Auto
