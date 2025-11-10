@@ -1264,11 +1264,9 @@ code
 Code
 st.markdown(report_md)
     
-    # Download options
-    st.subheader(f"⬇️ {t('download')} Options")
-    
-    col_d1, col_d2, col_d3, col_d4 = st.columns(4)
-    
+# Download options
+st.subheader(f"⬇️ {t('download')} Options")
+col_d1, col_d2, col_d3, col_d4 = st.columns(4)    
     with col_d1:
         st.download_button(
             "📄 Full Report (MD)",
@@ -1277,7 +1275,6 @@ st.markdown(report_md)
             mime="text/markdown",
             use_container_width=True
         )
-    
     with col_d2:
         # Export pipeline results as JSON
         json_export = json.dumps({
