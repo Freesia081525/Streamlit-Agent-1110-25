@@ -21,6 +21,22 @@ try:
 except ImportError:
     PLOTLY_AVAILABLE = False
 
+# BUG FIX: Define PDF2IMAGE_AVAILABLE in the global scope
+# Optional imports for Advanced OCR
+try:
+    from pdf2image import convert_from_bytes
+    PDF2IMAGE_AVAILABLE = True
+except ImportError:
+    PDF2IMAGE_AVAILABLE = False
+
+# Import specific OpenAI error for robust handling
+try:
+    from openai import BadRequestError
+except ImportError:
+    # Create a placeholder class if openai is not installed
+    class BadRequestError(Exception):
+        pass
+
 # ==============================================================================
 # Theme Definitions - 20 Animal Themes + Base Light/Dark
 # ==============================================================================
@@ -810,7 +826,7 @@ with tab_upload:
             st.info("ℹ️ Advanced OCR requires the `poppler` library to be installed on your system.")
             ocr_provider = st.selectbox("LLM Provider", ["gemini", "openai"], key="ocr_provider")
             if ocr_provider == "gemini":
-                ocr_model = st.text_input("Vision Model Name", value="gemini-1.5-pro-latest", key="ocr_model_gemini")
+                ocr_model = st.text_input("Vision Model Name", value="gemini-2.5-flash", key="ocr_model_gemini")
             else:
                 ocr_model = st.text_input("Vision Model Name", value="gpt-4o", key="ocr_model_openai")
     
@@ -855,9 +871,6 @@ with tab_upload:
 # ==============================================================================
 # Tab 2: Agent Configuration & Selection
 # ==============================================================================
-# ==============================================================================
-# Tab 2: Agent Configuration & Selection
-# ==============================================================================
 with tab_agent_select:
     st.header(f"Step 2: {t('agent_config')}")
     
@@ -884,7 +897,7 @@ agents:
     enabled: true
     model:
       provider: gemini
-      name: gemini-1.5-flash
+      name: gemini-2.5-flash
       temperature: 0.3
       max_tokens: 4096
     prompt: |
@@ -999,6 +1012,7 @@ agents:
             st.success(f"✅ Selected {len(selected_agent_ids)} agents for the pipeline. You can now proceed to the 'Agent Pipeline' tab.")
         else:
             st.info("Select one or more agents using the checkboxes to build your pipeline.")
+
 # ==============================================================================
 # Tab 3: Agent Pipeline Execution
 # ==============================================================================
