@@ -2424,7 +2424,6 @@ with tab_dashboard:
             fig = px.pie(lat_df, values='Latency (s)', names='Provider', color_discrete_sequence=px.colors.sequential.RdBu)
             fig.update_layout(template='plotly_dark' if st.session_state.theme_mode == 'dark' else 'plotly_white', paper_bgcolor='rgba(0,0,0,0)')
             st.plotly_chart(fig, use_container_width=True, key="provider_latency_chart")
-
 # ==============================================================================
 # Tab 5: Reports & Export
 # ==============================================================================
